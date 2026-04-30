@@ -1,0 +1,12 @@
+# 屏蔽conda环境文件
+.conda/
+.ipython/
+__pycache__/
+# 屏蔽编辑器配置
+.vscode/
+# 屏蔽系统无关文件
+AppData/
+Documents/
+Downloads/
+*.log
+.DS_Store

@@ -1,0 +1,8 @@
+python==3.11
+torch==2.0.0
+torchvision==0.16.0
+numpy==1.21.0
+pandas==2.3.0
+cv2==4.8.0
+sklearn==0.0
+matplotlib==3.8.0

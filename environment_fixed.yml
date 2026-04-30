@@ -1,0 +1,15 @@
+name: LX-mini
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+    - torch==2.0.0
+    - torchvision==0.16.0
+    - numpy==1.21.0
+    - pandas==2.3.0
+    - opencv-python==4.8.0
+    - scikit-learn==1.2.2
+    - matplotlib==3.8.0
