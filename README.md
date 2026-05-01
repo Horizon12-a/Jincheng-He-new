@@ -31,8 +31,8 @@ python check_env.py
 ---
 
 ## 任务 4：环境一键重建（可选）
-conda env create -f environment_fixed.yml
-conda activate LX-mini
+- conda env create -f environment_fixed.yml
+- conda activate LX-mini
 
 ---
 
