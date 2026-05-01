@@ -1,10 +1,10 @@
 # 依赖冲突分析报告
 
 ## 环境信息
-操作系统：Windows 11
-Python 版本：3.11
-运行环境：Conda 独立隔离环境 LX-mini
-硬件配置：CPU only
+ - 操作系统：Windows 11
+ - Python 版本：3.11
+ - 运行环境：Conda 独立隔离环境 LX-mini
+ - 硬件配置：CPU only
 
 ## 主要冲突问题分析
 ### 问题1：sklearn==0.0 是无效空包（包名/版本陷阱）
