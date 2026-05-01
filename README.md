@@ -25,7 +25,7 @@ pip install -r requirements_fixed.txt
 2. 运行环境校验脚本
 python check_env.py
 
-成功截图：env_success.png -
+成功截图：![](./imgs/env_success.png) -
 校验结果：所有依赖导入正常，版本匹配
 
 ---
