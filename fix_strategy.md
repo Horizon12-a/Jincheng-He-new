@@ -28,10 +28,10 @@
 ## 二、工程修复（适合 YOLO / PyTorch 训练）
 ### conda / pip 分工
 - **conda 安装**：python、numpy、pandas、matplotlib
-原因：底层二进制依赖稳定，兼容性更好。
+-- 原因：底层二进制依赖稳定，兼容性更好。
 
 - **pip 安装**：torch、torchvision、scikit-learn、numba、opencv
-原因：AI 框架与第三方工具包官方更新快，版本更精准。
+-- 原因：AI 框架与第三方工具包官方更新快，版本更精准。
 
 ---
 
