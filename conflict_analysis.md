@@ -25,7 +25,7 @@ GPU：CPU only
 根因：tensorflow 2.10 不支持 Python 3.11。
 类型：Python 版本与包不兼容。
 
-conda 与 pip 解析差异
+## conda 与 pip 解析差异
 conda：管理二进制依赖、C 扩展、系统库，解析更严格。
 pip：仅管理 Python 层级依赖，不关心底层编译兼容性。
 混用会导致底层库被覆盖，引发运行时崩溃。
