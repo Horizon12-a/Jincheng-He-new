@@ -13,7 +13,7 @@ cd C:\Users\33684\Desktop\Horizon12-a
 3. 执行破损依赖安装（复现失败）
 pip install -r requirements_broken.txt
 
-失败截图：env_fail.png -
+失败截图：./imgs/env_fail.png -
 完整失败日志：logs/install_failed.log
 
 ---
