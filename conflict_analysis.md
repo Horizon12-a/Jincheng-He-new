@@ -1,47 +1,34 @@
 # 依赖冲突分析报告
-
 环境信息
-操作系统：Windows 11 64位
+操作系统：Windows 11
 Python 版本：3.11
-使用隔离环境：Conda 虚拟环境 LX-mini
-环境创建方式：conda create 命令
-未使用：Python venv 虚拟环境、系统全局 Python 环境
-GPU：无，CPU 单机运行
+环境：conda 独立环境 LX-mini
+GPU：CPU only
 
-安装失败复现
-执行题目提供的破损依赖文件 requirements_broken.txt：
+## 问题1：sklearn==0.0 是无效空包（包名/版本陷阱）
+表现：安装直接冲突、无法解析。
+根因：sklearn==0.0 是 PyPI 占位假包，无实际代码，必须使用 scikit-learn。
+类型：包名错误 + 无效版本。
 
-pip install -r requirements_broken.txt
+## 问题2：torch 与 torchvision 版本完全不匹配（强依赖冲突）
+表现：安装后无法运行，导入报错。
+根因：torch==2.2.0 必须搭配 torchvision==0.17.0，但文件写的是 torchvision==0.10.0，版本极度不匹配。
+类型：包间强依赖冲突。
 
-错误日志已完整记录在 logs/install_failed.log 中。
+## 问题3：numba==0.56.4 不支持 Python 3.11（Python 版本冲突）
+表现：安装失败或无法运行。
+根因：numba 0.56.4 最高只支持 Python 3.10，而当前环境是 3.11。
+类型：Python 版本不兼容。
 
-## 主要冲突问题分析
+## 问题4：tensorflow==2.10.0 与 Python 3.11 不兼容（版本冲突）
+表现：安装失败。
+根因：tensorflow 2.10 不支持 Python 3.11。
+类型：Python 版本与包不兼容。
 
-### Python 版本冲突问题
-问题：requirements.txt 内写入 python==3.11
-pip 仅用于安装第三方库，无法安装 Python 解释器本体，conda 与 pip 解析规则不互通。
-影响：安装指令直接报错终止，整个依赖流程无法继续执行。
-
-### 错误包名问题
-问题：使用 cv2、sklearn 作为 pip 安装包名
-cv2 是代码导入名，真实安装包为 opencv-python；sklearn 无 0.0 有效版本，真实包名为 scikit-learn。
-conda 优先识别标准库名，pip 严格识别 PyPI 官方包名，二者包名不统一极易报错。
-影响：pip 检索不到对应安装包，依赖下载直接失败。
-
-### PyTorch 硬件版本不匹配问题
-问题：torch==2.0.0 未添加 +cpu 后缀
-裸版本 Torch 默认适配显卡 CUDA 环境，CPU 电脑无法匹配对应安装包。
-影响：PyPI 源无法找到对应资源，torch 与 torchvision 双双安装失败。
-
-### 包之间版本依赖不兼容问题
-问题：torch==2.0.0 配套 torchvision 应为 0.15.x，文件内错误填写 0.16.0
-conda 会自动校验上下游依赖适配，pip 不会主动校验版本关联关系。
-影响：即便强行安装成功，运行时接口不兼容，脚本导入直接报错崩溃。
-
-### Conda 与 Pip 解析机制差异
-1. Conda 跨语言管理环境，自带依赖关联校验，会自动适配 Python、torch、附属库版本
-2. Pip 仅管理 Python 第三方包，不校验 Python 本体版本，不自动匹配上下游依赖
-3. 二者源不互通、版本规则不一致，混用极易出现隐性冲突
+conda 与 pip 解析差异
+conda：管理二进制依赖、C 扩展、系统库，解析更严格。
+pip：仅管理 Python 层级依赖，不关心底层编译兼容性。
+混用会导致底层库被覆盖，引发运行时崩溃。
 
 ### 安装失败现场截图
 ![依赖安装失败截图](./imgs/env_fail.png)
