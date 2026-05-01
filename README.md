@@ -13,7 +13,7 @@ cd C:\Users\33684\Desktop\Horizon12-a
 3. 执行破损依赖安装（复现失败）
 pip install -r requirements_broken.txt
 
-失败截图：env_fail.png
+失败截图：env_fail.png -
 完整失败日志：logs/install_failed.log
 
 ---
@@ -25,7 +25,7 @@ pip install -r requirements_fixed.txt
 2. 运行环境校验脚本
 python check_env.py
 
-成功截图：env_success.png
+成功截图：env_success.png -
 校验结果：所有依赖导入正常，版本匹配
 
 ---
@@ -49,5 +49,5 @@ conda activate LX-mini
 ---
 
 ## 备注
-本作业全程使用 conda 虚拟环境 LX-mini，未使用系统全局 Python 或 venv
+本作业全程使用 conda 虚拟环境 LX-mini，未使用系统全局 Python 或 venv -
 所有截图与日志均为真实运行记录，可按上述步骤完整复现
